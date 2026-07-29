@@ -103,4 +103,15 @@ const logout = (req, res) => {
   res.status(200).json({ message: 'Logged out successfully' });
 };
 
-module.exports = { signup, login, logout };
+
+const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select('-password');
+    res.status(200).json({ user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+};
+
+module.exports = { signup, login, logout, getMe };
