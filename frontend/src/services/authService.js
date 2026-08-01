@@ -33,3 +33,14 @@ export async function signupUser(email, password) {
 
   return data;
 }
+
+export async function logoutUser() {
+  const response = await fetch(`${API_URL}/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+  if (!response.ok) {
+    const data = await response.json();
+    throw new Error(data.message || 'Logout failed');
+  }
+} 
