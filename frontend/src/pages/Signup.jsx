@@ -15,7 +15,7 @@ function Signup() {
     e.preventDefault();
     setError('');
     try {
-      const data = await signupUser(email, password);
+      const data = await signupUser(name, email, password);
       login(data.user);
       navigate('/dashboard');
     } catch (err) {
