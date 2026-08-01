@@ -18,7 +18,7 @@ function NavBar() {
 return (
     <div>
         <nav>
-            {user && <span>Welcome, {user.email}</span>}
+            {user && <span>Welcome, {user.name}</span>}
             <button onClick={handleLogout}>Logout</button>
         </nav>
     </div>

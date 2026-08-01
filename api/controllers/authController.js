@@ -4,12 +4,12 @@ const User = require('../models/User'); // the User model, so we can create/find
 
 const signup = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     // req.body is the JSON data sent by whoever called this route (e.g. your curl command).
     // We pull out just the fields we need.
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' });
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Name, email and password are required' });
     }
 
     const existingUser = await User.findOne({ email });
@@ -25,6 +25,7 @@ const signup = async (req, res) => {
 
     // Create the actual user record in MongoDB using the User model.
     const user = await User.create({
+      name,
       email,
       password: hashedPassword
     });
@@ -86,7 +87,7 @@ const login = async (req, res) => {
     });
 
     res.status(200).json({
-      user: { id: existingUser._id, email: existingUser.email },
+      user: { id: existingUser._id, name: existingUser.name, email: existingUser.email },
     });
   } catch (err) {
     console.error(err);

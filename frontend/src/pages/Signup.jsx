@@ -4,6 +4,7 @@ import { signupUser } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 
 function Signup() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,6 +27,12 @@ function Signup() {
     <div>
       <h1>Signup</h1>
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <input
           type="email"
           placeholder="Email"
