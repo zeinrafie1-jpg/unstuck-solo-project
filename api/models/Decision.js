@@ -13,14 +13,17 @@ const decisionSchema = new mongoose.Schema({
     choiceA: {
         type: String,
         required: true,
+        maxlength: 60,
     },
     choiceB: {
         type: String,
         required: true,
+        maxlength: 60,
     },
     description: {
         type: String,
         required: true,
+        maxlength: 500,
     },
     situation: {
         type: String,

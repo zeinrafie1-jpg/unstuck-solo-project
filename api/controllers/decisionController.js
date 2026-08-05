@@ -3,10 +3,11 @@ const Decision = require('../models/Decision');
 // Create a new decision
 const createDecision = async (req, res) => {
   try {
-    const { title, choiceA, choiceB, description } = req.body;
-    if (!title || !choiceA || !choiceB || !description) {
-      return res.status(400).json({ message: 'Title, choiceA, choiceB, and description are required' });
+    const { choiceA, choiceB, description } = req.body;
+    if (!choiceA || !choiceB || !description) {
+      return res.status(400).json({ message: 'ChoiceA, choiceB, and description are required' });
     }
+    const title = `${choiceA} or ${choiceB}?`; // Create a title based on the choices
     
     const userId = req.userId; // set by the protect middleware after verifying the JWT
 

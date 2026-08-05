@@ -1,11 +1,11 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-export async function createDecision(title, choiceA, choiceB, description) {
+export async function createDecision(choiceA, choiceB, description) {
   const response = await fetch(`${API_URL}/decisions`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
-    body: JSON.stringify({ title, choiceA, choiceB, description }),
+    body: JSON.stringify({choiceA, choiceB, description }),
   });   
 
   const data = await response.json();
