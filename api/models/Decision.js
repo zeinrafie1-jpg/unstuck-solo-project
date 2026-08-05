@@ -23,7 +23,7 @@ const decisionSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxlength: 500,
+        maxlength: 1500,
     },
     situation: {
         type: String,
