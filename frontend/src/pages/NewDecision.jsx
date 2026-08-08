@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createDecision } from '../services/decisionService';
-import { useAuth } from '../context/AuthContext';
 
 function NewDecision() {
   const [choiceA, setChoiceA] = useState('');

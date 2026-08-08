@@ -4,6 +4,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import MyDecisions from './pages/MyDecisions';
 import NewDecision from './pages/NewDecision';
+import SingleDecision from './pages/SingleDecision';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -39,6 +40,13 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route 
+            path="/decisions/:id" 
+            element={
+              <ProtectedRoute>
+                <SingleDecision />
+              </ProtectedRoute>
+            } />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

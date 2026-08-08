@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 import { getDecisions } from '../services/decisionService';
 
 function MyDecisions() {
-  const { user } = useAuth();
   const [decisions, setDecisions] = useState([]);
 
   useEffect(() => {
@@ -28,10 +27,12 @@ function MyDecisions() {
         <ul>
           {decisions.map((decision) => (
             <li key={decision._id}>
-              <h3>{decision.title}</h3>
-              {decision.recommendedChoice && (
-                <span className="badge">✓ {decision.recommendedChoice}</span>
-              )}
+              <Link to={`/decisions/${decision._id}`}>
+                <h3>{decision.title}</h3>
+                {decision.recommendedChoice && (
+                  <span className="badge">✓ {decision.recommendedChoice}</span>
+                )}
+              </Link>
             </li>
           ))}
         </ul>
@@ -39,5 +40,6 @@ function MyDecisions() {
     </div>
   );
 }
+
 
 export default MyDecisions;
