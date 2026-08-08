@@ -1,4 +1,6 @@
 const Decision = require('../models/Decision');
+const { getDecisionAnalysis } = require('../services/aiService'); // Import the AI service function
+
 
 // Create a new decision
 const createDecision = async (req, res) => {
@@ -8,15 +10,21 @@ const createDecision = async (req, res) => {
       return res.status(400).json({ message: 'ChoiceA, choiceB, and description are required' });
     }
     const title = `${choiceA} or ${choiceB}?`; // Create a title based on the choices
-    
     const userId = req.userId; // set by the protect middleware after verifying the JWT
+    
+    const aiAnalysis = await getDecisionAnalysis(choiceA, choiceB, description);
 
     const decision = await Decision.create({
       title,
       choiceA,
       choiceB,
       description,
-      userId
+      userId,
+      situation: aiAnalysis.situation,
+      tradeoff: aiAnalysis.tradeoff,
+      avoidanceCheck: aiAnalysis.avoidanceCheck,
+      recommendation: aiAnalysis.recommendation,
+      recommendedChoice: aiAnalysis.recommendedChoice
     });
 
     res.status(201).json(decision);
