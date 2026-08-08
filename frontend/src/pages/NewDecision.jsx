@@ -9,23 +9,55 @@ function NewDecision() {
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user } = useAuth();
+  const [result, setResult] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError('');
+    setIsSubmitting(true);
     try {
-        const data = await createDecision(choiceA, choiceB, description);
-        navigate('/my-decisions'); // Navigate to the MyDecisions page after successful creation (change this to the appropriate route if needed)
+      const data = await createDecision(choiceA, choiceB, description);
+      setResult(data);
     } catch (error) {
-        setError('Error creating decision. Please try again.');
-        console.error('Error creating decision:', error);
+      setError('Error creating decision. Please try again.');
+      console.error('Error creating decision:', error);
     } finally {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
     }
   };
+
+  if (result) {
+    return (
+      <div className="decision-result">
+        <h1>{result.title}</h1>
+
+        <section className="result-section">
+          <h2>What's really going on</h2>
+          <p>{result.situation}</p>
+        </section>
+
+        <section className="result-section">
+          <h2>The actual tradeoff</h2>
+          <p>{result.tradeoff}</p>
+        </section>
+
+        <section className="result-section">
+          <h2>Avoidance check</h2>
+          <p>{result.avoidanceCheck}</p>
+        </section>
+
+        <section className="result-section recommendation">
+          <h2>The lean</h2>
+          <p>{result.recommendation}</p>
+        </section>
+
+        <button onClick={() => navigate('/my-decisions')}>
+          Done — view my decisions
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>

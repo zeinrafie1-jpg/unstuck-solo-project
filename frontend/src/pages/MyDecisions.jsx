@@ -22,11 +22,20 @@ function MyDecisions() {
   return (
     <div>
       <h1>My Decisions</h1>
-      <ul>
-        {decisions.map((decision) => (
-          <li key={decision._id}>{decision.title}</li>
-        ))}
-      </ul>
+      {decisions.length === 0 ? (
+        <p>You haven't made any decisions yet. Start your first one!</p>
+      ) : (
+        <ul>
+          {decisions.map((decision) => (
+            <li key={decision._id}>
+              <h3>{decision.title}</h3>
+              {decision.recommendedChoice && (
+                <span className="badge">✓ {decision.recommendedChoice}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
