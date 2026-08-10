@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getDecisions } from '../services/decisionService';
+import { getDecisions, deleteDecision } from '../services/decisionService';
 
 function MyDecisions() {
   const [decisions, setDecisions] = useState([]);
@@ -18,6 +18,16 @@ function MyDecisions() {
     fetchDecisions();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await deleteDecision(id);
+      // Functional form — React hands you the guaranteed-current state as an argument 
+      setDecisions((prevDecisions) => prevDecisions.filter((decision) => decision._id !== id));
+    } catch (error) {
+      console.error('Error deleting decision:', error);
+    }
+  };
+
   return (
     <div>
       <h1>My Decisions</h1>
@@ -33,6 +43,12 @@ function MyDecisions() {
                   <span className="badge">✓ {decision.recommendedChoice}</span>
                 )}
               </Link>
+              <button
+                onClick={() => handleDelete(decision._id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
