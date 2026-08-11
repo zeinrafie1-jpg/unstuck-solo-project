@@ -9,13 +9,12 @@ const createDecision = async (req, res) => {
     if (!choiceA || !choiceB || !description) {
       return res.status(400).json({ message: 'ChoiceA, choiceB, and description are required' });
     }
-    const title = `${choiceA} or ${choiceB}?`; // Create a title based on the choices
     const userId = req.userId; // set by the protect middleware after verifying the JWT
     
     const aiAnalysis = await getDecisionAnalysis(choiceA, choiceB, description);
 
     const decision = await Decision.create({
-      title,
+      title: aiAnalysis.title,
       choiceA,
       choiceB,
       description,

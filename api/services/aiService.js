@@ -19,6 +19,7 @@ Context: ${description}
 
 Respond ONLY with valid JSON in exactly this shape, no other text, no markdown formatting, no code blocks:
 {
+  "title": "A short, clear question framing this decision (e.g. 'Should I go to the concert or stay in?'), max 15 words",
   "situation": "A short read on what's really going on emotionally or practically (1-2 sentences)",
   "tradeoff": "The genuine pros/cons of each option (2-3 sentences)",
   "avoidanceCheck": "Is any part of this avoidance/anxiety rather than a real downside? (1-2 sentences)",
