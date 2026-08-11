@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDecisionById } from '../services/decisionService';
+import FollowUpChat from '../components/FollowUpChat';
 
 function SingleDecision() {
     const { id } = useParams();
@@ -61,6 +62,10 @@ function SingleDecision() {
                 <h2>The lean</h2>
                 <p>{singleDecision.recommendation}</p>
             </section>
+            <FollowUpChat
+            decisionId={singleDecision._id}
+            initialMessages={singleDecision.followUpConversation}
+            />        
         </div>
     )
 

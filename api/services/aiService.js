@@ -41,4 +41,38 @@ Respond ONLY with valid JSON in exactly this shape, no other text, no markdown f
   return JSON.parse(responseText);
 }
 
-module.exports = { getDecisionAnalysis };
+async function streamFollowUp(decision, userMessage, res) {
+  const context = `You are continuing a conversation about this decision:
+
+Options: ${decision.choiceA} vs ${decision.choiceB}
+Original context: ${decision.description}
+Your original analysis: ${decision.recommendation}
+
+The user now says: ${userMessage}
+
+Respond conversationally and directly, building on your original analysis. Keep it concise.`;
+
+  const stream = anthropic.messages.stream({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 500,
+    messages: [{ role: 'user', content: context }],
+  });
+
+  stream.on('text', (text) => {
+    res.write(`data: ${JSON.stringify({ text })}\n\n`);
+  });
+
+  stream.on('end', () => {
+    res.write('data: [DONE]\n\n');
+    res.end();
+  });
+
+  stream.on('error', (error) => {
+    console.error('Streaming error:', error);
+    res.write(`data: ${JSON.stringify({ error: 'Stream failed' })}\n\n`);
+    res.end();
+  });
+}
+
+module.exports = { getDecisionAnalysis, streamFollowUp };
+
