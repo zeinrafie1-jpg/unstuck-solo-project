@@ -45,8 +45,8 @@ const signup = async (req, res) => {
     // include it on future requests to your server, so the user stays "logged in."
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none', // allows cross-site cookies (needed if your frontend and backend are on different domains)
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -81,8 +81,8 @@ const login = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -98,8 +98,8 @@ const login = async (req, res) => {
 const logout = (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: true,
+    sameSite: 'none',
   });
   res.status(200).json({ message: 'Logged out successfully' });
 };
