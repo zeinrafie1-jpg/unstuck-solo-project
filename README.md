@@ -68,7 +68,7 @@ You can then discuss further with the AI in a live, streamed conversation, and r
 
 Clone the repo:
 ```bash
-git clone https://github.com/zeinrafie1-jpg/unstuck-solo-project
+git clone https://github.com/zeinrafie1-jpg/unstuck-solo-project.git
 cd unstuck-solo-project
 ```
 
