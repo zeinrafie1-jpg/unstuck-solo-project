@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createDecision } from '../services/decisionService';
+import NavBar from '../components/NavBar';
 
 function NewDecision() {
   const [choiceA, setChoiceA] = useState('');
@@ -60,6 +61,7 @@ function NewDecision() {
 
   return (
     <div>
+      <NavBar />
       <h1>Create a New Decision</h1>
       <form onSubmit={handleSubmit}>
         <label>What are the two options you're stuck between?</label>

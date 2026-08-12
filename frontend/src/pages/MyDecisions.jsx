@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDecisions, deleteDecision } from '../services/decisionService';
+import NavBar from '../components/NavBar';
 
 function MyDecisions() {
   const [decisions, setDecisions] = useState([]);
@@ -30,6 +31,7 @@ function MyDecisions() {
 
   return (
     <div>
+      <NavBar />
       <h1>My Decisions</h1>
       {decisions.length === 0 ? (
         <p>You haven't made any decisions yet. Start your first one!</p>

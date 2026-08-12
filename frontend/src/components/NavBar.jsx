@@ -2,42 +2,78 @@ import { useNavigate, Link } from 'react-router-dom';
 import { logoutUser } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 function NavBar() {
-    const navigate = useNavigate();
-    const { user, logout } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
-    const handleLogout = async () => {
-        try {
-            await logoutUser(); // Call the logoutUser function from authService.js to log the user out on the server side.
-            logout(); // Call the logout function from AuthContext to clear the user state in the frontend.
-            navigate('/login'); // Redirect the user to the login page after logging out.
-        } catch (err) {
-            console.error('Logout failed:', err); // Log any errors that occur during the logout process.
-        }
-    };
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      logout();
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
     }
+  };
 
-return (
-    <div>
-        <nav>
-            {user && <span>Welcome, {user.name}</span>}
-            <button onClick={toggleMenu}>Decisions</button>
-            {isOpen && (
-                <div>
-                    <Link to="/new-decision" onClick={() => setIsOpen(false)}>New Decision</Link>
-                    <Link to="/my-decisions" onClick={() => setIsOpen(false)}>My Decisions</Link>
-                </div>
-            )}
-            <button>Profile</button>
-            <button onClick={handleLogout}>Logout</button>
-        </nav>
-    </div>
-    );
-};
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <nav className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+      <div className="flex items-center gap-4">
+        {user && <span className="text-gray-600">Welcome, {user.name}</span>}
+      </div>
+
+      <div className="flex items-center gap-6">
+        <div className="relative">
+          <button
+            onClick={toggleMenu}
+            className="flex items-center gap-1 text-gray-700 hover:text-gray-900 font-medium"
+          >
+            Decisions
+            <ChevronDown
+              size={16}
+              className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
+          {isOpen && (
+            <div className="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-40">
+              <Link
+                to="/new-decision"
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
+              >
+                New Decision
+              </Link>
+              <Link
+                to="/my-decisions"
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
+              >
+                My Decisions
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <button className="text-gray-700 hover:text-gray-900 font-medium">
+          Profile
+        </button>
+
+        <button
+          onClick={handleLogout}
+          className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-medium"
+        >
+          Logout
+        </button>
+      </div>
+    </nav>
+  );
+}
 
 export default NavBar;
