@@ -2,8 +2,8 @@
 
 An AI-powered decision coaching app that helps people navigate being stuck between two options — not with a generic pros & cons list, but with structured reasoning that specifically checks whether you're weighing a genuine tradeoff or just avoiding the harder, better choice out of anxiety.
 
-**Live app:** [https://unstuck-solo-project.vercel.app/]
-**Repo:** [https://github.com/zeinrafie1-jpg/unstuck-solo-project]
+**Live app:** https://unstuck-solo-project.vercel.app
+**Repo:** https://github.com/zeinrafie1-jpg/unstuck-solo-project
 
 > Note: the backend is hosted on Render's free tier, which spins down after periods of inactivity. If the app feels slow on first load, give it 30-60 seconds to wake up. This is expected, not a bug.
 
@@ -68,7 +68,7 @@ You can then discuss further with the AI in a live, streamed conversation, and r
 
 Clone the repo:
 ```bash
-git clone [https://github.com/zeinrafie1-jpg/unstuck-solo-project]
+git clone https://github.com/zeinrafie1-jpg/unstuck-solo-project
 cd unstuck-solo-project
 ```
 
