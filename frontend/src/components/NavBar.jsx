@@ -24,16 +24,19 @@ function NavBar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+    <nav className="flex items-center justify-between px-6 py-4 bg-surface border-b border-border">
       <div className="flex items-center gap-4">
-        {user && <span className="text-gray-600">Welcome, {user.name}</span>}
+        <Link to="/dashboard" className="font-medium text-text-primary hover:opacity-80 transition-opacity">
+          <span className="text-accent">Un</span>Stuck
+        </Link>
+        {user && <span className="text-text-secondary">Welcome, {user.name}</span>}
       </div>
 
       <div className="flex items-center gap-6">
         <div className="relative">
           <button
             onClick={toggleMenu}
-            className="flex items-center gap-1 text-gray-700 hover:text-gray-900 font-medium"
+            className="flex items-center gap-1 text-text-secondary hover:text-text-primary font-medium"
           >
             Decisions
             <ChevronDown
@@ -42,18 +45,18 @@ function NavBar() {
             />
           </button>
           {isOpen && (
-            <div className="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-40">
+            <div className="absolute top-full mt-2 right-0 bg-surface border border-border rounded-lg shadow-lg py-2 w-40">
               <Link
                 to="/new-decision"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
+                className="block px-4 py-2 text-text-secondary hover:bg-muted"
               >
                 New Decision
               </Link>
               <Link
                 to="/my-decisions"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
+                className="block px-4 py-2 text-text-secondary hover:bg-muted"
               >
                 My Decisions
               </Link>
@@ -61,13 +64,13 @@ function NavBar() {
           )}
         </div>
 
-        <button className="text-gray-700 hover:text-gray-900 font-medium">
+        <button className="text-text-secondary hover:text-text-primary font-medium">
           Profile
         </button>
 
         <button
           onClick={handleLogout}
-          className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-medium"
+          className="bg-accent hover:bg-accent-dark text-surface px-4 py-2 rounded-lg font-medium"
         >
           Logout
         </button>

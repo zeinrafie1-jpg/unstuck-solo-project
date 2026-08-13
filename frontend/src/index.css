@@ -17,3 +17,8 @@
   --color-text-secondary: #6B6255;
   --color-text-muted: #4A443A;
 }
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
