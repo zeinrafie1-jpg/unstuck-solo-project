@@ -32,7 +32,7 @@ function Signup() {
     navigate('/login');
   }
 
-  return (
+return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="max-w-md w-full mx-4 p-8 bg-surface rounded-xl shadow-sm">
         <div className="text-center mb-2">
@@ -40,7 +40,10 @@ function Signup() {
             <span className="text-accent">Un</span>Stuck
           </span>
         </div>
-        <h1 className="text-2xl font-semibold text-text-primary mb-6 text-center">
+        <p className="text-center text-sm text-text-secondary mb-6">
+          Stuck between two choices? Let UnStuck help you make the decision with confidence.
+        </p>
+        <h1 className="text-2xl font-semibold text-text-primary mb-4 text-center">
           Create an Account
         </h1>
 
@@ -50,7 +53,7 @@ function Signup() {
             id="name"
             className="w-full border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent mb-4"
             type="text"
-            placeholder="Name"
+            // placeholder="i.e. John Doe"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -59,7 +62,7 @@ function Signup() {
             id="email"
             className="w-full border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent mb-4"
             type="email"
-            placeholder="Email"
+            // placeholder="i.e. john.doe@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -68,7 +71,7 @@ function Signup() {
             id="password"
             className="w-full border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent mb-4"
             type="password"
-            placeholder="Password"
+            // placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -80,6 +83,7 @@ function Signup() {
           >
             {isSubmitting ? 'Signing up...' : 'Sign Up'}
           </button>
+
           <div className="flex items-center gap-3 my-4">
             <div className="flex-1 h-px bg-border"></div>
             <span className="text-sm text-text-secondary">or</span>
@@ -89,7 +93,7 @@ function Signup() {
           <button
             type="button"
             onClick={handleLoginClick}
-            className="w-full mt-2 text-accent hover:underline font-medium text-sm"
+            className="w-full text-accent hover:underline font-medium text-sm"
           >
             Already have an account? Log in
           </button>

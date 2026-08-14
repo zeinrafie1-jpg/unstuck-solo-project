@@ -39,7 +39,10 @@ function Login() {
             <span className="text-accent">Un</span>Stuck
           </span>
         </div>
-        <h1 className="text-2xl font-semibold text-text-primary mb-6 text-center">
+        <p className="text-center text-sm text-text-secondary mb-6">
+          Stuck between two choices? Let UnStuck help you make the decision with confidence.
+        </p>
+        <h1 className="text-2xl font-semibold text-text-primary mb-4 text-center">
           Login
         </h1>
 
@@ -49,7 +52,7 @@ function Login() {
             id="email"
             className="w-full border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent mb-4"
             type="email"
-            placeholder="Email"
+            // placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -58,7 +61,7 @@ function Login() {
             id="password"
             className="w-full border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent mb-4"
             type="password"
-            placeholder="Password"
+            // placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -80,7 +83,7 @@ function Login() {
           <button
             type="button"
             onClick={handleCreateAccountClick}
-            className="w-full mt-2 text-accent hover:underline font-medium text-sm"
+            className="w-full text-accent hover:underline font-medium text-sm"
           >
             Don't have an account? Create one
           </button>
