@@ -74,15 +74,16 @@ function NewDecision() {
 
   return (
     <div className="min-h-screen bg-background">
-      <NavBar />
-      <div className="max-w-2xl mx-auto mt-10 p-8 bg-surface rounded-xl shadow-sm">
-        <h1 className="text-2xl font-semibold text-text-primary mb-2">
-          Create a New Decision
-        </h1>
-        <p className="text-sm text-text-secondary mb-6">
-          Describe the two options and what's making it hard — we'll help you think it through.
-        </p>
+    <NavBar />
+    <div className="max-w-2xl mx-auto mt-10 px-6">
+      <h1 className="text-2xl font-semibold text-text-primary mb-2">
+        Create a New Decision
+      </h1>
+      <p className="text-sm text-text-secondary mb-6">
+        Describe the two options and what's making it hard to decide. We'll help you think it through.
+      </p>
 
+      <div className="p-8 bg-surface rounded-xl shadow-sm">
         <form onSubmit={handleSubmit}>
           <label className="block text-sm text-text-secondary mb-1">
             What are the two options you're stuck between?
@@ -132,7 +133,8 @@ function NewDecision() {
         </form>
       </div>
     </div>
+  </div>
   );
-  }
+}
 
 export default NewDecision;
