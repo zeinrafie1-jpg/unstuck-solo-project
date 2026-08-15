@@ -24,12 +24,12 @@ function NavBar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-surface border-b border-border">
+    <nav className="relative flex items-center justify-between px-6 py-4 bg-surface border-b border-border">
       <div className="flex items-center gap-4">
         <Link to="/dashboard" className="font-medium text-text-primary hover:opacity-80 transition-opacity">
           <span className="text-accent">Un</span>Stuck
         </Link>
-        {user && <span className="text-text-secondary">Welcome, {user.name}</span>}
+        {user && <span className=" absolute left-1/2 -translate-x-1/2 text-text-secondary">Welcome, {user.name}!</span>}
       </div>
 
       <div className="flex items-center gap-6">
