@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { MessageCircle, X } from 'lucide-react';
 import { streamFollowUp } from '../services/decisionService';
 
 function FollowUpChat({ decisionId, initialMessages = [] }) {
@@ -43,24 +44,38 @@ function FollowUpChat({ decisionId, initialMessages = [] }) {
   };
 
   return (
-    <div className="bg-surface border-2 border-border rounded-xl p-6">
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-text-secondary">
-          Need to discuss this further?
-        </p>
+    <div className="fixed bottom-6 right-6 z-50">
+      {!isOpen && (
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="border border-accent text-accent hover:bg-accent hover:text-surface transition-colors text-sm font-medium whitespace-nowrap ml-4 px-4 py-2 rounded-lg"
+          onClick={() => setIsOpen(true)}
+          className="bg-accent hover:bg-accent-dark text-surface rounded-full p-4 shadow-lg flex items-center gap-2"
         >
-          {isOpen ? 'Hide' : 'Start a follow-up chat'}
+          <MessageCircle size={22} />
+          <span className="text-sm font-medium pr-1">Start a follow-up chat</span>
         </button>
-      </div>
+      )}
 
       {isOpen && (
-        <div className="mt-4">
-          {messages.length > 0 && (
-            <div className="space-y-3 mb-4 max-h-96 overflow-y-auto">
-              {messages.map((msg, index) => (
+        <div className="bg-surface border-2 border-border rounded-xl shadow-lg w-80 sm:w-96 flex flex-col max-h-[500px]">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+            <p className="text-sm text-text-secondary">
+              Need to discuss this further?
+            </p>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-text-secondary hover:text-text-primary ml-2"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            {messages.length === 0 ? (
+              <p className="text-sm text-text-muted">
+                Want to add context or push back on the lean? Ask below.
+              </p>
+            ) : (
+              messages.map((msg, index) => (
                 <div
                   key={index}
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -77,24 +92,24 @@ function FollowUpChat({ decisionId, initialMessages = [] }) {
                     )}
                   </div>
                 </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
+              ))
+            )}
+            <div ref={messagesEndRef} />
+          </div>
 
-          <form onSubmit={handleSend} className="flex gap-2">
+          <form onSubmit={handleSend} className="flex gap-2 p-3 border-t border-border">
             <input
               type="text"
               placeholder="Type your response..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isStreaming}
-              className="flex-1 border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
+              className="flex-1 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
             />
             <button
               type="submit"
               disabled={isStreaming}
-              className="bg-accent hover:bg-accent-dark text-surface px-4 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-accent hover:bg-accent-dark text-surface px-3 py-2 rounded-lg text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isStreaming ? '...' : 'Send'}
             </button>
