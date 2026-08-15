@@ -32,7 +32,7 @@ function NewDecision() {
     return (
       <div className="min-h-screen bg-background">
         <NavBar />
-        <div className="max-w-2xl mx-auto mt-10 p-8 bg-surface rounded-xl shadow-sm">
+        <div className="max-w-3xl mx-auto mt-10 p-8 bg-surface rounded-xl shadow-sm">
           <h1 className="text-xl font-semibold text-text-primary mb-6">
             {result.title}
           </h1>
@@ -75,9 +75,9 @@ function NewDecision() {
   return (
     <div className="min-h-screen bg-background">
     <NavBar />
-    <div className="max-w-2xl mx-auto mt-10 px-6">
+    <div className="max-w-3xl mx-auto mt-10 px-6">
       <h1 className="text-2xl font-semibold text-text-primary mb-2">
-        Create a New Decision
+        New Decision
       </h1>
       <p className="text-sm text-text-secondary mb-6">
         Describe the two options and what's making it hard to decide. We'll help you think it through.
