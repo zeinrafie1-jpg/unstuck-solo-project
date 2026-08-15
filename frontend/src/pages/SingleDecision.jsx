@@ -44,10 +44,12 @@ function SingleDecision() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 px-6 pb-10">
-        <h1 className="text-2xl font-semibold text-text-primary mb-6">
-            {singleDecision.title}
-        </h1>
+    <div className="min-h-screen bg-background">
+        <NavBar />
+        <div className="max-w-2xl mx-auto mt-10 px-6 pb-10">
+            <h1 className="text-2xl font-semibold text-text-primary mb-6">
+                {singleDecision.title}
+            </h1>
 
         {/* The lean — the only section with special treatment */}
         <div className="bg-accent rounded-xl p-5 mb-6 flex gap-4 items-start">
@@ -111,6 +113,7 @@ function SingleDecision() {
             decisionId={singleDecision._id}
             initialMessages={singleDecision.followUpConversation}
         />
+        </div>
     </div>
   );
 }
