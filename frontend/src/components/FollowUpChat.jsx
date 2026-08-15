@@ -51,7 +51,7 @@ function FollowUpChat({ decisionId, initialMessages = [] }) {
           className="bg-accent hover:bg-accent-dark text-surface rounded-full p-4 shadow-lg flex items-center gap-2"
         >
           <MessageCircle size={22} />
-          <span className="text-sm font-medium pr-1">Start a follow-up chat</span>
+          <span className="text-sm font-medium pr-1">Need to discuss this further?</span>
         </button>
       )}
 
@@ -59,7 +59,7 @@ function FollowUpChat({ decisionId, initialMessages = [] }) {
         <div className="bg-surface border-2 border-border rounded-xl shadow-lg w-80 sm:w-96 flex flex-col max-h-[500px]">
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <p className="text-sm text-text-secondary">
-              Need to discuss this further?
+              What's on your mind?
             </p>
             <button
               onClick={() => setIsOpen(false)}
