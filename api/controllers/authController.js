@@ -52,6 +52,7 @@ const signup = async (req, res) => {
 
     res.status(201).json({
       user: { id: user._id, name: user.name, email: user.email },
+      token
     });
   } catch (err) {
     console.error(err);
@@ -88,6 +89,7 @@ const login = async (req, res) => {
 
     res.status(200).json({
       user: { id: existingUser._id, name: existingUser.name, email: existingUser.email },
+      token
     });
   } catch (err) {
     console.error(err);
