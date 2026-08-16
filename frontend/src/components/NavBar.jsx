@@ -29,7 +29,7 @@ function NavBar() {
         <Link to="/dashboard" className="font-medium text-text-primary hover:opacity-80 transition-opacity">
           <span className="text-accent">Un</span>Stuck
         </Link>
-        {user && <span className=" absolute left-1/2 -translate-x-1/2 text-text-secondary">Welcome, {user.name}!</span>}
+        {/* {user && <span className=" absolute left-1/2 -translate-x-1/2 text-text-secondary">Welcome, {user.name}!</span>} */}
       </div>
 
       <div className="flex items-center gap-6">
@@ -64,7 +64,10 @@ function NavBar() {
           )}
         </div>
 
-        <button className="text-text-secondary hover:text-text-primary font-medium">
+        <button 
+        className="text-text-secondary hover:text-text-primary font-medium"
+        onClick={() => navigate('/profile')}
+        >
           Profile
         </button>
 

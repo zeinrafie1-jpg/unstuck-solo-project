@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import MyDecisions from './pages/MyDecisions';
 import NewDecision from './pages/NewDecision';
 import SingleDecision from './pages/SingleDecision';
+import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -47,6 +48,11 @@ function App() {
                 <SingleDecision />
               </ProtectedRoute>
             } />
+          <Route path="profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
