@@ -72,7 +72,7 @@ function FollowUpChat({ decisionId, initialMessages = [] }) {
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.length === 0 ? (
               <p className="text-sm text-text-muted">
-                Want to add context or push back on the lean? Ask below.
+                Feel free to add more context or push back on this recommendation.
               </p>
             ) : (
               messages.map((msg, index) => (

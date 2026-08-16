@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createDecision } from '../services/decisionService';
 import NavBar from '../components/NavBar';
-import { Compass } from 'lucide-react';
+import { Compass, Heart, Scale, Eye } from 'lucide-react';
 
 function NewDecision() {
   const [choiceA, setChoiceA] = useState('');
@@ -32,13 +32,13 @@ function NewDecision() {
     return (
       <div className="min-h-screen bg-background">
         <NavBar />
-        <div className="max-w-3xl mx-auto mt-10 p-8 bg-surface rounded-xl shadow-sm">
+        <div className="max-w-2xl mx-auto mt-10 px-6 pb-10">
           <h1 className="text-xl font-semibold text-text-primary mb-6">
             {result.title}
           </h1>
 
-          <div className="bg-accent rounded-xl p-5 mb-4 flex gap-4 items-start">
-            {/* <Compass size={28} className="text-accent-on flex-shrink-0 mt-1" /> */}
+          <div className="bg-accent rounded-xl p-5 mb-6 flex gap-4 items-start">
+            <Compass size={28} className="text-accent-on flex-shrink-0 mt-1" />
             <div>
               <p className="text-xs font-medium text-accent-on mb-1">The lean</p>
               <p className="text-lg font-medium text-surface mb-2">{result.recommendedChoice}</p>
@@ -46,26 +46,37 @@ function NewDecision() {
             </div>
           </div>
 
-          <div className="bg-muted rounded-xl p-5 mb-4">
-            <p className="text-xs font-medium text-text-secondary mb-1">What's really going on</p>
-            <p className="text-sm text-text-muted leading-relaxed">{result.situation}</p>
-          </div>
+          <div className="bg-surface border border-border rounded-xl p-6 mb-6 space-y-5">
+            <div className="flex gap-3">
+              <Heart size={18} className="text-secondary flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-xs font-medium text-text-secondary mb-1">What's really going on</p>
+                <p className="text-sm text-text-muted leading-relaxed">{result.situation}</p>
+              </div>
+            </div>
 
-          <div className="bg-muted rounded-xl p-5 mb-4">
-            <p className="text-xs font-medium text-text-secondary mb-1">The actual tradeoff</p>
-            <p className="text-sm text-text-muted leading-relaxed">{result.tradeoff}</p>
-          </div>
+            <div className="flex gap-3 border-t border-border pt-5">
+              <Scale size={18} className="text-secondary flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-xs font-medium text-text-secondary mb-1">The actual tradeoff</p>
+                <p className="text-sm text-text-muted leading-relaxed">{result.tradeoff}</p>
+              </div>
+            </div>
 
-          <div className="bg-accent-light rounded-xl p-5 mb-6">
-            <p className="text-xs font-medium text-accent-dark mb-1">Avoidance check</p>
-            <p className="text-sm text-accent-dark leading-relaxed">{result.avoidanceCheck}</p>
+            <div className="flex gap-3 border-t border-border pt-5">
+              <Eye size={18} className="text-secondary flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-xs font-medium text-text-secondary mb-1">Avoidance check</p>
+                <p className="text-sm text-text-muted leading-relaxed">{result.avoidanceCheck}</p>
+              </div>
+            </div>
           </div>
 
           <button
             onClick={() => navigate('/my-decisions')}
             className="w-full bg-accent hover:bg-accent-dark text-surface px-4 py-2 rounded-lg font-medium"
           >
-            View my Decisions
+            Back to my decisions
           </button>
         </div>
       </div>
