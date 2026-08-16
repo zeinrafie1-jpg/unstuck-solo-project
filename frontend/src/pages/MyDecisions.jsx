@@ -49,7 +49,7 @@ function MyDecisions() {
               to="/new-decision"
               className="inline-block bg-accent hover:bg-accent-dark text-surface px-4 py-2 rounded-lg font-medium"
             >
-              Start your first one
+              Make a Decision
             </Link>
           </div>
         ) : (
