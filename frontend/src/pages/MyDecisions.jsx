@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDecisions, deleteDecision } from '../services/decisionService';
 import NavBar from '../components/NavBar';
+import { Trash2 } from 'lucide-react';
 
 function MyDecisions() {
   const [decisions, setDecisions] = useState([]);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
   useEffect(() => {
     const fetchDecisions = async () => {
@@ -22,8 +24,9 @@ function MyDecisions() {
   const handleDelete = async (id) => {
     try {
       await deleteDecision(id);
-      // Functional form — React hands you the guaranteed-current state as an argument 
+      // Functional form — React hands you the guaranteed-current state as an argument
       setDecisions((prevDecisions) => prevDecisions.filter((decision) => decision._id !== id));
+      setConfirmDeleteId(null); // Reset the confirmation state after deletion
     } catch (error) {
       console.error('Error deleting decision:', error);
     }
@@ -67,18 +70,45 @@ function MyDecisions() {
                   )}
                 </Link>
                 <button
-                  onClick={() => handleDelete(decision._id)}
-                  className="text-muted-text hover:text-red-600 text-sm font-medium ml-4"
+                  onClick={() => setConfirmDeleteId(decision._id)}
+                  className="text-red-600 hover:text-red-600 ml-4"
                 >
-                  Delete
+                  <Trash2 size={18} />
                 </button>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {confirmDeleteId && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-surface rounded-xl p-6 max-w-sm w-full mx-4">
+            <p className="text-text-primary font-medium mb-2">
+              Are you sure you want to delete this decision?
+            </p>
+            <p className="text-sm text-text-secondary mb-6">
+              This can't be undone.
+            </p>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setConfirmDeleteId(null)}
+                className="text-text-secondary hover:text-text-primary px-4 py-2 text-sm font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDelete(confirmDeleteId)}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default MyDecisions;
