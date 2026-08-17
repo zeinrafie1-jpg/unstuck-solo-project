@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["/node_modules/", "/__tests__/setup.js"]
   },
   "keywords": [],
   "author": "",
@@ -23,6 +26,9 @@
     "mongoose": "^9.8.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "jest": "^30.4.2",
+    "mongodb-memory-server": "^11.2.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
   }
 }
