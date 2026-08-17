@@ -18,7 +18,7 @@ function Login() {
 
     try {
       const data = await loginUser(email, password);
-      login(data.user);
+      login(data.user, data.token);
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);

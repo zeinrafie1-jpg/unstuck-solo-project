@@ -19,7 +19,7 @@ function Signup() {
     
     try {
       const data = await signupUser(name, email, password);
-      login(data.user);
+      login(data.user, data.token);
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);

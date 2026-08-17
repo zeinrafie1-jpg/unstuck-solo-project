@@ -1,10 +1,13 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-export async function createDecision(choiceA, choiceB, description) {
+export async function createDecision(choiceA, choiceB, description, token) {
   const response = await fetch(`${API_URL}/decisions`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
+    headers: { 
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: 'include', // this can be removed. doesn't do anything functionally anymore
     body: JSON.stringify({choiceA, choiceB, description }),
   });   
 
@@ -17,9 +20,10 @@ export async function createDecision(choiceA, choiceB, description) {
   return data;
 }
 
-export async function getDecisions() {
+export async function getDecisions(token) {
   const response = await fetch(`${API_URL}/decisions`, {
     method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
     credentials: 'include',
   });
 
@@ -32,9 +36,10 @@ export async function getDecisions() {
   return data;
 }  
 
-export async function getDecisionById(id) {
+export async function getDecisionById(id, token) {
   const response = await fetch(`${API_URL}/decisions/${id}`, {
     method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
     credentials: 'include',
   });
 
@@ -47,9 +52,10 @@ export async function getDecisionById(id) {
   return data;
 }
 
-export async function deleteDecision(id) {
+export async function deleteDecision(id, token) {
   const response = await fetch(`${API_URL}/decisions/${id}`, {
     method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
     credentials: 'include',
   });
   const data = await response.json();
@@ -61,10 +67,13 @@ export async function deleteDecision(id) {
   return data;
 }
 // this function will be used to send a follow-up message to the AI and receive a streamed response
-export async function streamFollowUp(decisionId, message, onChunk) {
+export async function streamFollowUp(decisionId, message, token, onChunk) {
   const response = await fetch(`${API_URL}/decisions/${decisionId}/followup`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
     credentials: 'include',
     body: JSON.stringify({ message }),
   });

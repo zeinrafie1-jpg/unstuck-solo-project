@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDecisions, deleteDecision } from '../services/decisionService';
+import { useAuth } from '../context/AuthContext';
 import NavBar from '../components/NavBar';
 import { Trash2 } from 'lucide-react';
 
 function MyDecisions() {
   const [decisions, setDecisions] = useState([]);
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchDecisions = async () => {
       try {
-        const data = await getDecisions();
+        const data = await getDecisions(token);
         setDecisions(data);
       } catch (error) {
         console.error('Error fetching decisions:', error);
@@ -19,11 +21,11 @@ function MyDecisions() {
     };
 
     fetchDecisions();
-  }, []);
+  }, [token]);
 
   const handleDelete = async (id) => {
     try {
-      await deleteDecision(id);
+      await deleteDecision(id, token);
       // Functional form — React hands you the guaranteed-current state as an argument
       setDecisions((prevDecisions) => prevDecisions.filter((decision) => decision._id !== id));
       setConfirmDeleteId(null); // Reset the confirmation state after deletion

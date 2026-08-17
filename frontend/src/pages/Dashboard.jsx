@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import { Compass } from 'lucide-react';
 import NavBar from '../components/NavBar';
 import { getDecisions } from '../services/decisionService';
+import { useAuth } from '../context/AuthContext';
 
 function Dashboard() {
   const [decisions, setDecisions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchDecisions = async () => {
       try {
-        const data = await getDecisions();
+        const data = await getDecisions(token);
         setDecisions(data);
       } catch (error) {
         console.error('Error fetching decisions:', error);
@@ -21,7 +23,7 @@ function Dashboard() {
     };
 
     fetchDecisions();
-  }, []);
+  }, [token]);
 
   const recentDecisions = decisions.slice(0, 3);
 

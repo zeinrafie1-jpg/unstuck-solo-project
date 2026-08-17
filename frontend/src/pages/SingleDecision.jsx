@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Compass } from 'lucide-react';
 import { getDecisionById } from '../services/decisionService';
+import { useAuth } from '../context/AuthContext';
 import FollowUpChat from '../components/FollowUpChat';
 import NavBar from '../components/NavBar';
 
@@ -9,11 +10,12 @@ function SingleDecision() {
   const { id } = useParams();
   const [singleDecision, setSingleDecision] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchDecisionById = async () => {
       try {
-        const data = await getDecisionById(id);
+        const data = await getDecisionById(id, token);
         setSingleDecision(data);
       } catch (error) {
         console.error('Error fetching single decision:', error);
@@ -23,7 +25,7 @@ function SingleDecision() {
     };
 
     fetchDecisionById();
-  }, [id]);
+  }, [id, token]);
 
   if (loading) {
     return (
@@ -112,6 +114,7 @@ function SingleDecision() {
         <FollowUpChat
             decisionId={singleDecision._id}
             initialMessages={singleDecision.followUpConversation}
+            token={token}
         />
         </div>
     </div>

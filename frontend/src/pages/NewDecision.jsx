@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createDecision } from '../services/decisionService';
 import NavBar from '../components/NavBar';
 import { Compass, Heart, Scale, Eye } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 function NewDecision() {
   const [choiceA, setChoiceA] = useState('');
@@ -12,13 +13,14 @@ function NewDecision() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState(null);
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setIsSubmitting(true);
     try {
-      const data = await createDecision(choiceA, choiceB, description);
+      const data = await createDecision(choiceA, choiceB, description, token);
       setResult(data);
     } catch (error) {
       setError('Error creating decision. Please try again.');

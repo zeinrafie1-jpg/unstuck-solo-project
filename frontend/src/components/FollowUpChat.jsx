@@ -2,12 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { streamFollowUp } from '../services/decisionService';
 
-function FollowUpChat({ decisionId, initialMessages = [] }) {
+function FollowUpChat({ decisionId, initialMessages = [], token }) {
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const messagesEndRef = useRef(null);
+  
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -25,7 +26,7 @@ function FollowUpChat({ decisionId, initialMessages = [] }) {
     setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
 
     try {
-      await streamFollowUp(decisionId, input, (chunk) => {
+      await streamFollowUp(decisionId, input, token, (chunk) => {
         setMessages((prev) => {
           const updated = [...prev];
           const lastIndex = updated.length - 1;
