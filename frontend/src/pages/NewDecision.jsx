@@ -39,7 +39,7 @@ function NewDecision() {
             {result.title}
           </h1>
 
-          <div className="bg-accent rounded-xl p-5 mb-6 flex gap-4 items-start">
+          <div className="bg-accent rounded-xl p-5 mb-4 flex gap-4 items-start">
             <Compass size={28} className="text-accent-on flex-shrink-0 mt-1" />
             <div>
               <p className="text-xs font-medium text-accent-on mb-1">The lean</p>
@@ -48,29 +48,27 @@ function NewDecision() {
             </div>
           </div>
 
-          <div className="bg-surface border border-border rounded-xl p-6 mb-6 space-y-5">
-            <div className="flex gap-3">
-              <Heart size={18} className="text-secondary flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-xs font-medium text-text-secondary mb-1">What's really going on</p>
-                <p className="text-sm text-text-muted leading-relaxed">{result.situation}</p>
-              </div>
+          <div className="bg-muted rounded-xl p-5 mb-4 flex gap-3">
+            <Heart size={18} className="text-secondary flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-medium text-text-secondary mb-1">What's really going on</p>
+              <p className="text-sm text-text-muted leading-relaxed">{result.situation}</p>
             </div>
+          </div>
 
-            <div className="flex gap-3 border-t border-border pt-5">
-              <Scale size={18} className="text-secondary flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-xs font-medium text-text-secondary mb-1">The actual tradeoff</p>
-                <p className="text-sm text-text-muted leading-relaxed">{result.tradeoff}</p>
-              </div>
+          <div className="bg-surface border border-border rounded-xl p-5 mb-4 flex gap-3">
+            <Scale size={18} className="text-secondary flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-medium text-text-secondary mb-1">The actual tradeoff</p>
+              <p className="text-sm text-text-muted leading-relaxed">{result.tradeoff}</p>
             </div>
+          </div>
 
-            <div className="flex gap-3 border-t border-border pt-5">
-              <Eye size={18} className="text-secondary flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-xs font-medium text-text-secondary mb-1">Avoidance check</p>
-                <p className="text-sm text-text-muted leading-relaxed">{result.avoidanceCheck}</p>
-              </div>
+          <div className="bg-accent-light rounded-xl p-5 mb-6 flex gap-3">
+            <Eye size={18} className="text-accent-dark flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-medium text-accent-dark mb-1">Avoidance check</p>
+              <p className="text-sm text-accent-dark leading-relaxed">{result.avoidanceCheck}</p>
             </div>
           </div>
 

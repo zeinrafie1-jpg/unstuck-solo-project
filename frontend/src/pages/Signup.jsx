@@ -89,13 +89,13 @@ return (
             <span className="text-sm text-text-secondary">or</span>
             <div className="flex-1 h-px bg-border"></div>
           </div>
-
+          
           <button
             type="button"
             onClick={handleLoginClick}
-            className="w-full text-accent hover:underline font-medium text-sm"
+            className="w-full border-2 border-accent text-accent hover:bg-accent hover:text-surface transition-colors px-4 py-2 rounded-lg font-medium"
           >
-            Already have an account? Log in
+            Login
           </button>
         </form>
       </div>
