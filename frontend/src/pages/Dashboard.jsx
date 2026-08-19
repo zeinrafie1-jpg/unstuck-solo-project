@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Compass } from 'lucide-react';
+import { Compass, MessageSquare, Search, ChevronRight } from 'lucide-react';
 import NavBar from '../components/NavBar';
 import { getDecisions } from '../services/decisionService';
 import { useAuth } from '../context/AuthContext';
@@ -36,7 +36,7 @@ function Dashboard() {
         </h1>
 
         {/* Banner */}
-        <div className="bg-accent rounded-xl p-6 mb-8 flex items-center justify-between gap-6">
+        <div className="bg-accent rounded-xl p-6 mb-6 flex items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <Compass size={36} className="text-accent-on flex-shrink-0" />
             <div>
@@ -55,6 +55,30 @@ function Dashboard() {
             Get UnStuck
           </Link>
         </div>
+
+        {/* First-time explainer — only shows before any decisions exist */}
+        {!loading && decisions.length === 0 && (
+          <div className="bg-surface border border-border rounded-xl p-6 mb-8 grid sm:grid-cols-3 gap-5">
+            <div className="flex gap-3">
+              <div className="bg-accent-light text-accent-dark rounded-full p-2 flex-shrink-0 h-fit">
+                <MessageSquare size={16} />
+              </div>
+              <p className="text-sm text-text-secondary">Describe your two options</p>
+            </div>
+            <div className="flex gap-3">
+              <div className="bg-accent-light text-accent-dark rounded-full p-2 flex-shrink-0 h-fit">
+                <Search size={16} />
+              </div>
+              <p className="text-sm text-text-secondary">We check what's really going on</p>
+            </div>
+            <div className="flex gap-3">
+              <div className="bg-accent-light text-accent-dark rounded-full p-2 flex-shrink-0 h-fit">
+                <Compass size={16} />
+              </div>
+              <p className="text-sm text-text-secondary">Get a clear lean, backed by real reasoning</p>
+            </div>
+          </div>
+        )}
 
         {/* Stats */}
         {!loading && (
@@ -84,9 +108,20 @@ function Dashboard() {
         )}
 
         {/* Recent activity */}
-        <h2 className="text-lg font-medium text-text-primary mb-3">
-          Recent activity
-        </h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-lg font-medium text-text-primary">
+            Recent activity
+          </h2>
+          {decisions.length > 0 && (
+            <Link
+              to="/my-decisions"
+              className="text-sm text-accent hover:underline font-medium flex items-center gap-1"
+            >
+              View all
+              <ChevronRight size={14} />
+            </Link>
+          )}
+        </div>
         {recentDecisions.length === 0 ? (
           <p className="text-text-secondary">Nothing here yet.</p>
         ) : (
