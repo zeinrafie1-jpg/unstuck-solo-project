@@ -13,7 +13,23 @@ An AI-powered decision coaching app that helps people navigate being stuck betwe
 
 ## Screenshots
 
-*(coming soon)*
+**Homepage**
+![Login](screenshots/1_login.png)
+
+**Dashboard**
+![Dashboard](screenshots/3_dashboard.png)
+
+**Describing a decision**
+![New Decision Form](screenshots/5_new_decision_form.png)
+
+**The Structured AI Response**
+![AI Result](screenshots/6_ai-structured-response.png)
+
+**Reviewing Past Decisions**
+![My Decisions](screenshots/4_my-decisions.png)
+
+**Discussing Further (Live)**
+![Follow-up chat](screenshots/8_followup-chat.png)
 
 ---
 
