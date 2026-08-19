@@ -20,7 +20,7 @@ An AI-powered decision coaching app that helps people navigate being stuck betwe
 ![Dashboard](screenshots/3_dashboard.png)
 
 **Describing a decision**
-![New Decision Form](screenshots/5_new_decision_form.png)
+![New Decision Form](screenshots/5_new-decision-form.png)
 
 **The Structured AI Response**
 ![AI Result](screenshots/6_ai-structured-response.png)
