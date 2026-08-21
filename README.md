@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/zeinrafie1-jpg/unstuck-solo-project/actions/workflows/ci.yml/badge.svg)
 
-An AI-powered decision coaching app that helps people navigate being stuck between two options — not with a generic pros & cons list, but with structured reasoning that specifically checks whether you're weighing a genuine tradeoff or just avoiding the harder, better choice out of anxiety.
+An AI-powered decision coaching app that helps people navigate being stuck between two options - not with a generic pros & cons list, but with structured reasoning that specifically checks whether you're weighing a genuine tradeoff or just avoiding the harder, better choice out of anxiety.
 
 **Live app:** [unstuck-solo-project.vercel.app](https://unstuck-solo-project.vercel.app)
 **Repo:** [github.com/zeinrafie1-jpg/unstuck-solo-project](https://github.com/zeinrafie1-jpg/unstuck-solo-project)
@@ -37,10 +37,10 @@ An AI-powered decision coaching app that helps people navigate being stuck betwe
 
 Most decision making tools just ask you to list pros and cons. UnStuck does something different: you describe the two options you're stuck between and what's making it hard, and the AI responds with four things:
 
-- **What's really going on** — a read on the actual emotional or practical situation
-- **The real tradeoff** — genuine pros and cons of each option
-- **An avoidance check** — is this a genuine downside, or discomfort/anxiety dressed up as a reason?
-- **A direct lean** — an actual recommendation with reasoning, not "it's up to you"
+- **What's really going on**: a read on the actual emotional or practical situation
+- **The real tradeoff**: genuine pros and cons of each option
+- **An avoidance check**: is this a genuine downside, or discomfort/anxiety dressed up as a reason?
+- **A direct lean**: an actual recommendation with reasoning, not "it's up to you"
 
 You can then discuss further with the AI in a live, streamed conversation, and revisit past decisions later.
 
